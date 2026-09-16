@@ -24,7 +24,7 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
-function parseAppData(value: unknown): AppData {
+export function validateAppData(value: unknown): AppData {
   if (!isRecord(value) || value.schemaVersion !== 1) {
     throw new Error("不支持的数据版本");
   }
@@ -72,7 +72,7 @@ export class FileStore {
 
   private async read(path: string): Promise<AppData> {
     const contents = await readFile(path, "utf8");
-    return parseAppData(JSON.parse(contents));
+    return validateAppData(JSON.parse(contents));
   }
 
   private async writeAtomic(data: AppData, preserveBackup: boolean): Promise<void> {
@@ -108,7 +108,7 @@ export class FileStore {
   }
 
   async save(data: AppData): Promise<void> {
-    const validated = parseAppData(data);
+    const validated = validateAppData(data);
     await this.writeAtomic(validated, true);
   }
 }

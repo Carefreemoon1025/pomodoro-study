@@ -1,5 +1,6 @@
 export type Theme = "light" | "dark";
 export type TimerPhase = "idle" | "focus" | "shortBreak" | "longBreak";
+export type TimerCommand = "start" | "pause";
 
 export interface Settings {
   focusMinutes: number;

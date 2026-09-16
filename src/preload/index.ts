@@ -1,3 +1,20 @@
-import { contextBridge } from "electron";
+import { contextBridge, ipcRenderer } from "electron";
+import { IPC, type PomodoroApi } from "../shared/ipc";
+import type { TimerCommand } from "../shared/model";
 
-contextBridge.exposeInMainWorld("pomodoro", {});
+const api: PomodoroApi = {
+  loadData: () => ipcRenderer.invoke(IPC.loadData),
+  saveData: (data) => ipcRenderer.invoke(IPC.saveData, data),
+  setAlwaysOnTop: (enabled) => ipcRenderer.invoke(IPC.setAlwaysOnTop, enabled),
+  showNotification: (title, body) =>
+    ipcRenderer.invoke(IPC.showNotification, title, body),
+  onTimerCommand: (listener) => {
+    const handler = (_event: Electron.IpcRendererEvent, command: TimerCommand) => {
+      listener(command);
+    };
+    ipcRenderer.on(IPC.timerCommand, handler);
+    return () => ipcRenderer.removeListener(IPC.timerCommand, handler);
+  }
+};
+
+contextBridge.exposeInMainWorld("pomodoro", api);
