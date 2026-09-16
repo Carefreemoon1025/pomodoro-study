@@ -35,5 +35,8 @@
     "typescript": "^7.0.2",
     "vite": "^7.3.6",
     "vitest": "^5.0.1"
+  },
+  "allowScripts": {
+    "electron@44.4.1": true
   }
 }

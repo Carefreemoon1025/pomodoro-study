@@ -248,6 +248,7 @@ export function createAppStore(
 
         set({ data: nextData, error: null, remaining: 0 });
         persist(nextData);
+        get().refreshRemaining();
 
         if (result.session?.completed) {
           void api.showNotification("专注完成", "这一轮已记录，可以开始休息了。");
