@@ -1,0 +1,13 @@
+appId: com.local.pomodoro-study
+productName: 番茄专注
+directories:
+  output: release
+files:
+  - out/**
+win:
+  target:
+    - portable
+    - nsis
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true

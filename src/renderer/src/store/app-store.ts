@@ -193,6 +193,12 @@ export function createAppStore(
             state.data.settings,
             now()
           );
+          if (api.testDurationSeconds !== undefined) {
+            nextRuntime = {
+              ...nextRuntime,
+              durationSeconds: api.testDurationSeconds
+            };
+          }
         }
 
         const nextData = { ...state.data, runtime: nextRuntime };

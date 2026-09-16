@@ -622,6 +622,135 @@ input:focus-visible {
   font-size: 10px;
 }
 
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: flex-end;
+  background: rgba(15, 23, 21, 0.24);
+}
+
+.settings-drawer {
+  width: min(380px, 92vw);
+  height: 100%;
+  background: var(--surface);
+  border-left: 1px solid var(--line);
+  box-shadow: -12px 0 40px rgba(20, 35, 31, 0.15);
+  padding: 22px;
+  overflow-y: auto;
+}
+
+.drawer-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.drawer-head h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.icon-button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--muted);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.drawer-section {
+  border-top: 1px solid var(--line);
+  padding: 17px 0 8px;
+}
+
+.drawer-section h3 {
+  margin: 0 0 14px;
+  font-size: 13px;
+}
+
+.drawer-section > label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 42px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.number-field {
+  width: 132px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface-soft);
+  overflow: hidden;
+}
+
+.number-field input {
+  width: 72px;
+  height: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+  text-align: right;
+  padding: 0 6px;
+}
+
+.number-field em {
+  color: var(--muted);
+  font-size: 11px;
+  font-style: normal;
+}
+
+.switch-row input {
+  width: 34px;
+  height: 18px;
+}
+
+.select-row select {
+  height: 34px;
+  min-width: 108px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface-soft);
+  color: var(--ink);
+  padding: 0 8px;
+}
+
+.field-error {
+  color: #a4382d;
+  font-size: 12px;
+  margin: 8px 0 0;
+}
+
+.drawer-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+  margin-top: 14px;
+}
+
+.drawer-actions .primary-button,
+.drawer-actions .secondary-button {
+  min-width: 0;
+  height: 38px;
+  font-size: 12px;
+  padding: 0 12px;
+}
+
 html[data-theme="dark"] .timer-panel[data-phase="shortBreak"],
 html[data-theme="dark"] .timer-panel[data-phase="longBreak"] {
   --accent: #7eae96;

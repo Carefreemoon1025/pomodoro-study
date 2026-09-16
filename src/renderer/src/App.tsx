@@ -1,12 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { buildDashboard } from "../../domain/stats";
 import { Dashboard } from "./components/Dashboard";
+import { SettingsDrawer } from "./components/SettingsDrawer";
 import { TaskSidebar } from "./components/TaskSidebar";
 import { TimerPanel } from "./components/TimerPanel";
 import { Toolbar } from "./components/Toolbar";
 import { appStore, useStore } from "./store/app-store";
 
 export default function App() {
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const data = useStore(appStore, (state) => state.data);
   const remaining = useStore(appStore, (state) => state.remaining);
   const error = useStore(appStore, (state) => state.error);
@@ -77,7 +79,7 @@ export default function App() {
                 alwaysOnTop: !data.settings.alwaysOnTop
               })
             }
-            onOpenSettings={() => undefined}
+            onOpenSettings={() => setSettingsOpen(true)}
           />
         </header>
 
@@ -105,6 +107,13 @@ export default function App() {
 
         <Dashboard stats={stats} />
       </main>
+
+      <SettingsDrawer
+        open={settingsOpen}
+        settings={data.settings}
+        onClose={() => setSettingsOpen(false)}
+        onSave={(settings) => appStore.getState().updateSettings(settings)}
+      />
     </div>
   );
 }

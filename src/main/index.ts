@@ -18,6 +18,10 @@ let mainWindow: BrowserWindow | null = null;
 let tray: Tray | null = null;
 let quitting = false;
 
+if (process.env.POMODORO_E2E_DATA_DIR) {
+  app.setPath("userData", process.env.POMODORO_E2E_DATA_DIR);
+}
+
 function showMainWindow(): void {
   if (!mainWindow) {
     createWindow();
@@ -70,6 +74,10 @@ function createTray(services: DesktopServices): void {
 }
 
 function createWindow(): void {
+  const additionalArguments =
+    process.env.POMODORO_TEST_DURATION_SECONDS !== undefined
+      ? [`--pomodoro-test-duration=${process.env.POMODORO_TEST_DURATION_SECONDS}`]
+      : [];
   mainWindow = new BrowserWindow({
     width: 960,
     height: 680,
@@ -80,7 +88,8 @@ function createWindow(): void {
     webPreferences: {
       preload: join(__dirname, "../preload/index.js"),
       contextIsolation: true,
-      nodeIntegration: false
+      nodeIntegration: false,
+      additionalArguments
     }
   });
 

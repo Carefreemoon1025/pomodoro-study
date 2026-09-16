@@ -9,6 +9,7 @@ export const IPC = {
 } as const;
 
 export interface PomodoroApi {
+  testDurationSeconds?: number;
   loadData(): Promise<AppData>;
   saveData(data: AppData): Promise<{ ok: boolean; error?: string }>;
   setAlwaysOnTop(enabled: boolean): Promise<void>;
