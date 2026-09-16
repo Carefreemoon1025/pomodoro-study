@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <rect x="48" y="48" width="928" height="928" rx="220" fill="#173b33"/>
+  <circle cx="512" cy="524" r="354" fill="none" stroke="#315a50" stroke-width="54"/>
+  <path
+    d="M512 170a354 354 0 1 1-250.3 103.7"
+    fill="none"
+    stroke="#f7f4ee"
+    stroke-width="58"
+    stroke-linecap="round"
+  />
+  <defs>
+    <linearGradient id="tomato" x1="430" y1="330" x2="590" y2="800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ff7a65"/>
+      <stop offset="1" stop-color="#d84f3f"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="512" cy="570" rx="258" ry="246" fill="url(#tomato)"/>
+  <ellipse cx="430" cy="485" rx="70" ry="48" fill="#fff" fill-opacity=".14" transform="rotate(-25 430 485)"/>
+  <path
+    d="M512 388c38-48 96-71 157-61-19 58-70 96-137 96-17 0-32-2-46-6z"
+    fill="#67af7d"
+  />
+  <path
+    d="M500 390c-40-44-99-63-159-48 22 56 76 90 143 85 16-1 31-4 45-9z"
+    fill="#7cc18f"
+  />
+  <path d="M506 354c4-60 18-105 48-139" fill="none" stroke="#2f7650" stroke-width="34" stroke-linecap="round"/>
+  <circle cx="512" cy="188" r="18" fill="#f7f4ee"/>
+</svg>

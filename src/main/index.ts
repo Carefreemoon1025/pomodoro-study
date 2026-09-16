@@ -33,16 +33,18 @@ function showMainWindow(): void {
   mainWindow.focus();
 }
 
+function getResourcePath(fileName: string): string {
+  return app.isPackaged
+    ? join(process.resourcesPath, fileName)
+    : join(app.getAppPath(), "build", fileName);
+}
+
 function createTrayIcon() {
-  const svg = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32">
-      <circle cx="16" cy="18" r="12" fill="#d84f3f"/>
-      <path d="M16 6c3-4 7-4 9-3-1 4-4 6-8 6z" fill="#2e7d55"/>
-    </svg>
-  `;
-  return nativeImage.createFromDataURL(
-    `data:image/svg+xml;base64,${Buffer.from(svg).toString("base64")}`
-  );
+  const icon = nativeImage.createFromPath(getResourcePath("icon.ico"));
+  if (icon.isEmpty()) {
+    throw new Error(`托盘图标加载失败：${getResourcePath("icon.ico")}`);
+  }
+  return icon;
 }
 
 function createTray(services: DesktopServices): void {
@@ -83,6 +85,7 @@ function createWindow(): void {
     height: 680,
     minWidth: 800,
     minHeight: 600,
+    icon: getResourcePath("icon.ico"),
     show: false,
     autoHideMenuBar: true,
     webPreferences: {

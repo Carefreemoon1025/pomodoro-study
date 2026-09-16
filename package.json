@@ -7,11 +7,12 @@
   "scripts": {
     "dev": "electron-vite dev",
     "build": "npm run typecheck && electron-vite build",
+    "icons": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/generate-icons.ps1",
     "preview": "electron-vite preview",
     "typecheck": "tsc --noEmit && tsc -p tsconfig.node.json --noEmit",
     "test": "vitest",
     "test:e2e": "npm run build && playwright test",
-    "dist:win": "npm run build && electron-builder --win portable"
+    "dist:win": "npm run icons && npm run build && electron-builder --win portable"
   },
   "dependencies": {
     "@electron-toolkit/utils": "^4.0.0",
